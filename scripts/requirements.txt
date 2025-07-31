@@ -1,0 +1,6 @@
+pandas
+numpy
+streamlit
+plotly
+selenium
+undetected-chromedriver
