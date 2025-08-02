@@ -26,6 +26,7 @@ The dashboard provides insights into:
 
 The project is organized into the following directories and files:
 
+```bash
 ├── data/
 │   ├── cleaned_data.csv        # The final, cleaned data used by the dashboard.
 │   └── top_trending_jobs.csv   # The raw, scraped data.
@@ -38,6 +39,7 @@ The project is organized into the following directories and files:
 ├── .gitignore                  # Specifies files to be ignored by Git (e.g., *.csv).
 ├── Makefile                    # Defines the automated workflow for the project.
 └── requirements.txt            # Lists all Python dependencies for easy installation.
+```
 
 ## Getting Started
 
