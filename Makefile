@@ -24,4 +24,4 @@ data/top_trending_jobs.csv: scripts/job_scraper.py
 # Clean Generated Data
 clean:
 	@echo "---Cleaning Now---"
-	del data/*.csv
+	del data\*.csv
