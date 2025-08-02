@@ -22,6 +22,7 @@ def scrape_weworkremotely():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--headless") 
+    options.add_argument("--window-size=1920,1080") 
 
     driver = uc.Chrome(options=options)
     print("WebDriver initialized.")
