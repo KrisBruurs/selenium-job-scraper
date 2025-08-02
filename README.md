@@ -22,7 +22,7 @@ The dashboard provides insights into:
 - **Interactive Dashboard:** Visualizes key trends using Plotly and Streamlit.
 - **Makefile Automation:** Simple commands (`make install`, `make run`) to set up and run the entire project.
 
-## 📂 Project Structure
+## Project Structure
 
 The project is organized into the following directories and files:
 
