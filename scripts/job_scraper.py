@@ -41,21 +41,25 @@ def scrape_weworkremotely():
             driver.get(url)
             print(f"Scraping page {index + 1}: {url}")
 
-            if index == 0: 
-                accept_cookies(driver)
+            try:
+               
+                wait = WebDriverWait(driver, 15) 
+                job_links_elements = wait.until(
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, "section.jobs li > a"))
+                )
+                print(f"Found {len(job_links_elements)} potential job listings on page {index + 1}")
 
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(random.uniform(3, 6))
+                page_links = [
+                    link.get_attribute("href")
+                    for link in job_links_elements
+                    if link.get_attribute("href") and link.get_attribute("href") != "https://weworkremotely.com/"
+                ]
+                all_job_links.extend(page_links)
 
-            job_links_elements = driver.find_elements(By.CSS_SELECTOR, "section.jobs li > a")
-            print(f"Found {len(job_links_elements)} potential job listings on page {index + 1}")
+            except Exception as e:
+                print(f"Could not find job links on page {index + 1}. The site may be blocking the scraper. Error: {e}")
+                continue # Move to the next page
 
-            page_links = [
-                link.get_attribute("href")
-                for link in job_links_elements
-                if link.get_attribute("href") and link.get_attribute("href") != "https://weworkremotely.com/"
-            ]
-            all_job_links.extend(page_links)
 
             time.sleep(random.uniform(2, 5)) 
 
