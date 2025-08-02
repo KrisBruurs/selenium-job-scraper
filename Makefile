@@ -6,7 +6,7 @@ install: requirements.txt
 	python -m pip install -r requirements.txt
 
 # 3. Generate and Run Dashboard
-run_dashboard: data/cleaned_data.csv scripts/dashboard.py
+run: data/cleaned_data.csv scripts/dashboard.py
 	streamlit run scripts/dashboard.py
 
 # 2. Clean Scraped Data
