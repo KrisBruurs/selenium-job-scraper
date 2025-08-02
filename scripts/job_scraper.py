@@ -18,13 +18,10 @@ def accept_cookies(driver_instance):
 
 def scrape_weworkremotely():
     options = uc.ChromeOptions()
-    options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--start-maximized") # Ensure the virtual window is maximized
-    options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
-
+    options.add_argument("--start-maximized") 
 
     driver = uc.Chrome(options=options)
     print("WebDriver initialized.")
@@ -41,25 +38,21 @@ def scrape_weworkremotely():
             driver.get(url)
             print(f"Scraping page {index + 1}: {url}")
 
-            try:
-               
-                wait = WebDriverWait(driver, 15) 
-                job_links_elements = wait.until(
-                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, "section.jobs li > a"))
-                )
-                print(f"Found {len(job_links_elements)} potential job listings on page {index + 1}")
+            if index == 0: 
+                accept_cookies(driver)
 
-                page_links = [
-                    link.get_attribute("href")
-                    for link in job_links_elements
-                    if link.get_attribute("href") and link.get_attribute("href") != "https://weworkremotely.com/"
-                ]
-                all_job_links.extend(page_links)
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(random.uniform(3, 6))
 
-            except Exception as e:
-                print(f"Could not find job links on page {index + 1}. The site may be blocking the scraper. Error: {e}")
-                continue # Move to the next page
+            job_links_elements = driver.find_elements(By.CSS_SELECTOR, "section.jobs li > a")
+            print(f"Found {len(job_links_elements)} potential job listings on page {index + 1}")
 
+            page_links = [
+                link.get_attribute("href")
+                for link in job_links_elements
+                if link.get_attribute("href") and link.get_attribute("href") != "https://weworkremotely.com/"
+            ]
+            all_job_links.extend(page_links)
 
             time.sleep(random.uniform(2, 5)) 
 
