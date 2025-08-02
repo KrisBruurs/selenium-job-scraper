@@ -1,4 +1,4 @@
-# WWR Remote Jobs Dashboard 
+# WeWorkRemotely Remote Jobs Dashboard 
 
 This project automatically scrapes the top 150 trending job listings from weworkremotely.com, cleans the collected data, and presents the insights in an interactive web dashboard built with Streamlit.
 
