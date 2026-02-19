@@ -8,7 +8,7 @@ install: requirements.txt
 
 # 3. Generate and Run Dashboard
 run: data/cleaned_data.csv scripts/dashboard.py
-	@echo: "---Finished... Generating Dashboard Now---"
+	@echo "---Finished... Generating Dashboard Now---"
 	streamlit run scripts/dashboard.py
 
 # 2. Clean Scraped Data

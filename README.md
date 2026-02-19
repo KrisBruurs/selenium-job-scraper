@@ -71,7 +71,7 @@ make install
 Now, you can run the entire project with a single command. This will execute the data pipeline (scraping and cleaning) and then launch the dashboard in your web browser.
 
 ```bash
-make run_dashboard
+make run
 ```
 ## Makefile Commands
 
